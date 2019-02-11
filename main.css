@@ -1,0 +1,82 @@
+body
+	{
+		background: #F8F8FF;
+	}
+
+header
+	{
+		font-family: sans-serif;
+		text-align: center;
+	}
+	
+main
+	{
+		margin-left: 2%;
+		margin-right: 2%;
+	}
+	
+#mainmap
+	{
+		float: left;
+		height: 500px;
+		width: 80%;
+		box-shadow: 0px 0px 5px #888888;
+	}
+	
+#controlsContainer
+	{
+		float: left;
+		width: 15%;
+		padding-left: 10px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		margin-left: 3.7%;
+		background: #eeeef8;
+		box-shadow: 0px 0px 5px #888888;
+	}
+
+.ctrlDivider
+	{
+		color: #ffffff;
+		text-shadow: 0px 1px 0px #ffffff;
+		width: 80%
+	}
+	
+.ctrlButton, .ctrlLink
+	{
+		font: normal normal normal 40px/1 FontAwesome;
+		color: #777777;
+		background: none;
+		border: none;
+		margin-top: 10px;
+		transition: text-shadow 0.2s;
+		text-decoration: none;
+	}
+	
+.ctrlButton:hover, .ctrlLink:hover
+	{
+		text-shadow: 0px 0px 3px #4d4d4d;
+		color: #000000;
+		cursor: pointer;
+	}
+	
+.ctrlButton:active, .ctrlLink:active
+	{
+		text-shadow: 0px 0px 1px #4d4d4d;
+	}
+	
+.ctrlButton:active + .tooltip, .ctrlLink:active + .tooltip
+	{
+		text-shadow: 0px 0px 1px #4d4d4d;
+	}
+	
+.tooltip
+	{
+		transition: opacity 0.2s;
+		font: 12px sans-serif;
+		padding-right: 10px;
+		top: 16px;
+		position: relative;
+		float: right;
+	}
+	

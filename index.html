@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		
+		<script src="https://use.fontawesome.com/3b50bca330.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="crossorigin=""/>
+		<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+		<script type="text/javascript" src="tile.stamen.js"></script>
+		<link rel="stylesheet" href="main.css">
+	</head>
+	
+	<body>
+		<header>
+			<h1>Project Napkin (Alpha 3)</h1>
+			<h2>A Really Professional RP Mapper for NationStates by Komminland</h2>
+		</header>
+		
+		<main>
+			<div id="mainmap" style="float:left;"></div>
+			<!-- Map will fail if not placed after the map div -->
+			<script type="text/javascript" src="map.js"></script>
+			
+			<!-- This used to contain the instructions...
+			<div style="float:right; width:27%">
+			<p><b>Instructions</b></p>
+			<p>Click "Enter Claim Creation Mode" to make a new map plot.</p>
+			<p>In plot creation mode, you can click on the map to set the corners of a new plot.</p>
+			<p>To change the location of a particular corner, drag its marker to the desired destination.</p>
+			<p>You can remove a corner by right clicking on its marker. To finalize your plot, click "Finish Plot".</p>
+			
+			
+			<p>To export your map, click "Export Map" and copy the raw data in the box that appears. You can then load this data by clicking "Load Map from Export" and pasting it in.</p>-->
+			
+			<div id="controlsContainer">
+				<input class="ctrlButton" id="polygonEdit" type="button" onclick="togglePolygonCreation();" value="&#xf044"></input><span class="tooltip" id="polygonTooltip">Create plot</span><br>
+				
+				<input class="ctrlButton" id="unitEdit" type="button" onclick="toggleUnitCreation();" value="&#xf041"></input><span class="tooltip" id="unitTooltip">Create units</span>
+				
+				<hr class="ctrlDivider">
+				
+				<input class="ctrlButton" id="importMap" type="button" onclick="loadMapItems(null, true);" value="&#xf093"></input><span class="tooltip">Load map</span><br>
+				
+				<input class="ctrlButton" id="exportMap" type="button" onclick="dumpMapItems(false);" value="&#xf064"></input><span class="tooltip">Export map</span><br>
+				
+				<input class="ctrlButton" id="linkMap" type="button" onclick="dumpMapItems(true);" value="&#xf0c1"></input><span class="tooltip">Link to this map</span><br>
+				
+				<hr class="ctrlDivider">
+				
+				<a class="ctrlLink" id="tgKomminland" href="https://www.nationstates.net/page=compose_telegram?tgto=Komminland">&nbsp&#xf075</a><span class="tooltip">TG Komminland</span><br>
+				<br style="line-height: 10px;">
+				<a class="ctrlLink" id="devDiaries" href="https://www.nationstates.net/page=dispatches/category=8/subcategory=835/nation=komminland">&nbsp&#xf02d</a><span class="tooltip">Dev Diaries</span><br>
+			</div>
+		</main>
+	</body>
+</html>

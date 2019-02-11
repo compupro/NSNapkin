@@ -1,0 +1,68 @@
+var layer = new L.StamenTileLayer("terrain-background");
+var map = new L.Map("mainmap", {
+    center: new L.LatLng(50, 0),
+    zoom: 1.5
+});
+map.addLayer(layer);
+
+republicPoints = [new L.LatLng(41.96766, -114.03809),new L.LatLng(42.00033, -111.0498),new L.LatLng(41.01307, -111.0498),new L.LatLng(40.91351, -102.12891),new L.LatLng(37.0201, -101.99707),new L.LatLng(37.0201, -113.99414)]
+
+republicPolygon = L.polygon(republicPoints, {color:'blue'});
+republicPolygon.bindPopup("Republic of States I Can't Remember the Names Of <hr> Owned by <a href=\"https://www.nationstates.net/diogott\">Mighty Diogott</a>");
+republicPolygon.addTo(map);
+
+var claimPoints = [];
+
+map.on("click", function (event){
+	if(claim != null){return null;}
+	claimPoints.push(L.marker(event.latlng, {opacity:.5, draggable:'true'}));
+	claimPoints[claimPoints.length - 1].addTo(map);
+});
+
+var claim = null;
+
+var completeClaim = function() {
+	if(claim != null){return null;}
+	var claimName = prompt("What is the name of your claim?", "Saxony");
+	var nationName = prompt("What is the name of your NationStates nation?", "Nova Capatenia");
+	nationName.replace(/ /g,"_");
+	var polyPoints = [];
+	for(x = 0; x < claimPoints.length; x++){
+		polyPoints.push(claimPoints[x].getLatLng());
+		claimPoints[x].remove()
+	}
+	claimPoints = [];
+	claim = L.polygon(polyPoints, {color:'red'});
+	claim.bindPopup("New claim: " + claimName + "<hr> Claimed by: <a href = \"https://www.nationstates.net/" + nationName + "\">" + nationName + "</a>");
+	claim.addTo(map);
+	claim.openPopup();
+}
+var deleteClaim = function() {if(claim!=null){claim.remove(); claim = null;}
+for(x=0;x<claimPoints.length;x++){claimPoints[x].remove();} claimPoints = [];}
+var submitClaim = function() {
+	if(claim==null){ alert("You didn't make a claim to submit to the Master Overlord Cartographer Man!"); return null; }
+	alert("Claim submitted (but not really).");
+}
+
+var dumpClaim = function(){
+	if(claim==null){alert("Can't convert a claim that doesn't exist to gibberish!"); return null;}
+	claimConvert = {};
+	claimConvert.latlngs = claim._latlngs;
+	claimConvert.popupContent = claim._popup._content;
+	prompt("Copy the following:", window.btoa(JSON.stringify(claimConvert)));
+}
+
+var loadClaim = function(){
+	if(claim != null){claim.remove()}
+	var claimdata = JSON.parse(window.atob(prompt("Enter claim gibberish here:")))
+	var polyPoints = claimdata.latlngs;
+	for(x = 0; x < claimPoints.length; x++){
+		polyPoints.push(claimPoints[x].getLatLng());
+		claimPoints[x].remove()
+	}
+	claimPoints = [];
+	claim = L.polygon(polyPoints, {color:'red'});
+	claim.bindPopup(claimdata.popupContent);
+	claim.addTo(map);
+	claim.openPopup();
+}
